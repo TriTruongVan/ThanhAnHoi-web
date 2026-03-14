@@ -1,0 +1,14 @@
+services:
+  web:
+    image: node:20
+    working_dir: /app
+    volumes:
+      - ./:/app
+    ports:
+      - "${PORT:-4000}:${PORT:-4000}"
+    environment:
+      - NODE_ENV=production
+      - SHOP_API_URL=${SHOP_API_URL}
+      - PORT=${PORT}
+    command: npm start
+    restart: unless-stopped
